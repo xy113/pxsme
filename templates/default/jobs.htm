@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>英才诚聘_{$config.sitename}</title>
+<meta name="keywords" content="{$config.keywords}" />
+<meta name="description" content="{$config.description}" />
+<link href="images/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="static/js/jquery.js"></script>
+<script type="text/javascript" src="static/js/common.js"></script>
+<script type="text/javascript" src="static/js/checkform.js"></script>
+</head>
+
+<body>
+{include file='header.htm'}
+<div class="page-wrap">
+	<div class="yourpos">当前位置：<a href="./">首页</a> >> 会员中心 >> 英才诚聘</div>
+	<div id="job-wrap">
+	<div class="postresume">请将您的个人简历和申请职位发送到：pxsmehr@163.com</div>
+	{foreach from=$jobs.list item=job}
+	<div class="box" onmouseover="this.style.background='#f2f2f2'" onmouseout="this.style.background=''">
+		<h3>招聘职位：{$job.title}</h3>
+		<div><strong>薪资待遇：</strong>{$job.salary}　<strong>招聘人数：</strong>{$job.numbers}</div>
+		<p style="background:#f2f2f2;"><strong>工作职责：</strong>{$job.respon}</p>
+		<p><strong>能力要求：</strong>{$job.content}</p>
+	</div>
+	{/foreach}
+	<div class="postresume">请将您的个人简历和申请职位发送到：pxsmehr@163.com</div>
+	</div>
+	<div class="page">{$pagelink}</div>
+</div>
+{include file='footer.htm'}

@@ -1,0 +1,26 @@
+		<div class="article-comment">
+			{if $messages}
+			{foreach from=$messages item=mm name=msg}
+			<div{if $smarty.foreach.msg.first} style="border-top:none"{/if}><span>时间: {$mm.dateline|date_format:'%Y-%m-%d %H:%M'}{if $my.adminid>0}　<a href="javascript:" onclick="DropComment({$articleid},{$mm.id})">删除</a>{/if}</span><strong>网友: {$mm.username}</strong></div>
+			<p>{$mm.message}</p>
+			{/foreach}
+			{else}
+			<p>暂时还没有评论。</p>
+			{/if}
+			<div class="pagediv">{$pagelink}</div>
+		</div> 
+		<div class="form">
+			<form method="post" action="member.php?action=login&do=login" onsubmit="return checkLogin()">
+			用户名:<input type="text" name="username" id="login_username" class="txt"{if $logined} value="{$my.username}"{/if} /> 
+			密码:<input type="password" name="password" id="login_password" class="txt"{if $logined} value="password"{/if} /> 
+			{if $logined}
+			<a href="member.php?action=login&do=logout">退出登录</a> 
+			{else}
+			<input type="submit" class="button" value="登录" /> 
+			<input type="button" class="button" value="注册" onclick="window.location='member.php?action=register'" /> 
+			{/if}
+			<input type="button" class="button" value="发评论" onclick="PostComment({$articleid})"{if !$logined} disabled="disabled"{/if} />
+			<textarea name="message" id="message"{if !$logined} readonly="readonly"{/if}>{if !$logined}请先登录才能发表评论。{/if}</textarea>
+			</form>
+			<p>* 网友评论仅供网友发表个人看法，并不表明中小企业信息网同意其观点或证实其描述！</p>
+		</div>

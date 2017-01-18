@@ -1,0 +1,88 @@
+<!--{if $opration=='addnew' || $opration=='edit'}-->
+<div class="main-div">
+<div class="toolbar">
+    <span class="btn btn-dft" onclick="SaveCategory()" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.save}</span></span>
+	<span class="btn btn-dft" onclick="Location('index.php?action=forum')" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.back_list}</span></span>
+	<span class="btn btn-dft" onclick="window.location.reload()" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.refresh}</span></span>
+    <span class="ctrlenter">　{$lang.ctrlenter}</span>
+</div>
+<form name="c" method="post" action="index.php?action=forum&opration=save">
+<input type="hidden" name="fid" value="{$forum.fid}">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="form-table">
+    <tr>
+      <td width="60">分类名称：</td>
+      <td><input name="forumnew[name]" type="text" class="textinput" id="forumnew[name]" style="width:200px;" value="{$forum.name}"></td>
+    </tr>
+    <tr>
+      <td>关键字：</td>
+      <td><input name="forumnew[keywords]" type="text" class="textinput" id="forumnew[keywords]" style="width:400px;" value="{$forum.keywords}"></td>
+    </tr>
+    <tr>
+      <td>分类描述：</td>
+      <td><textarea name="forumnew[description]" id="forumnew[description]" style="width:400px; height:100px;">{$forum.description}</textarea></td>
+    </tr>
+  </table>
+  </form>
+ <div class="toolbar">
+    <span class="btn btn-dft" onclick="SaveCategory()" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.save}</span></span>
+	<span class="btn btn-dft" onclick="Location('index.php?action=forum')" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.back_list}</span></span>
+	<span class="btn btn-dft" onclick="window.location.reload()" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.refresh}</span></span>
+    <span class="ctrlenter">　{$lang.ctrlenter}</span>
+</div>
+</div>
+{literal}
+<script type="text/javascript">
+var hassubmited = false;
+function SaveCategory(){
+	if(hassubmited)return false;
+	var theForm = document.c;
+	if(!$("forumnew[name]").value){
+		showError("分类名称不能为空。");
+		return false;
+	}
+	theForm.submit();
+}
+document.onkeydown = function(e){
+	e=window.event||e;
+	if(e.ctrlKey&&e.keyCode==13){
+	   SaveCategory();
+	}
+}
+</script>
+{/literal}
+<!--{else}-->
+<div class="main-div">
+	 <div class="toolbar">
+		<span class="btn btn-dft" onclick="Drop('fid[]')" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span><strong>{$lang.drop}</strong></span></span>
+		<span class="btn btn-dft" onclick="Location('index.php?action=forum&opration=addnew')" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.category_addnew}</span></span>
+		<span class="btn btn-dft" onclick="window.location.reload()" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.refresh}</span></span>
+	</div>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="list">
+    <tr>
+      <th scope="col" width="20"><input type="checkbox" onClick="checkAll(this,'fid[]')"></th>
+      <th scope="col" width="20">ID</th>
+      <th scope="col" width="160">分类名称</th>
+      <th scope="col" class="tocenter" width="80">发帖需要审核</th>
+      <th scope="col" class="tocenter" width="80">回帖需要审核</th>
+	  <th scope="col" class="tocenter" width="30">排序</th>
+	  <th scope="col">关键字</th>
+    </tr>
+	<!--{foreach from=$forums item=ff}-->
+    <tr>
+      <td><input type="checkbox" name="fid[]" value="{$ff.fid}" onClick="checkThis(this)"></td>
+      <td>{$ff.fid}</td>
+      <td><a href="index.php?action=forum&opration=edit&fid={$ff.fid}">{$ff.name}</a></td>
+      <td class="tocenter"><img src="images/{if $ff.poststatus==1}yes.gif{else}no.gif{/if}" border="0" onClick="toggle(this,'opration=toggle_post&fid={$ff.fid}')"></td>
+      <td class="tocenter"><img src="images/{if $ff.replystatus==1}yes.gif{else}no.gif{/if}" border="0" onClick="toggle(this,'opration=toggle_reply&fid={$ff.fid}')"></td>
+	  <td class="tocenter"><span onClick="Edit(this,'edit_name',{$ff.fid})">{$ff.displayorder}</span></td>
+	  <td>{$ff.keywords}</td>
+    </tr>
+	<!--{/foreach}-->
+  </table>
+  	 <div class="toolbar">
+		<span class="btn btn-dft" onclick="Drop('fid[]')" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span><strong>{$lang.drop}</strong></span></span>
+		<span class="btn btn-dft" onclick="Location('index.php?action=forum&opration=addnew')" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.category_addnew}</span></span>
+		<span class="btn btn-dft" onclick="window.location.reload()" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.refresh}</span></span>
+	</div>
+</div>
+<!--{/if}-->

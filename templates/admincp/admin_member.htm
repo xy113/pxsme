@@ -1,0 +1,180 @@
+<!--{if $operation=='addnew'}-->
+<div class="main-div">
+	<div class="pos-div">
+		<h2>{$lang.cp_home} &raquo; {$lang.member.manage} &raquo; {$lang.member.addnew}</h2>
+	</div>
+	<div class="toolbar">
+		<span class="btn btn-dft" onclick="SaveMember()" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseover="this.className='btn btn-hover'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{if $operation=='addnew'}{$lang.save}{else}{$lang.save_edit}{/if}</span></span>
+		<span class="btn btn-dft" onclick="LoadPage()" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseover="this.className='btn btn-hover'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.back_list}</span></span>
+		<span class="btn btn-dft" onclick="window.location.reload();" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseover="this.className='btn btn-hover'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.refresh}</span></span>
+	</div>
+	  <form name="newmember" method="post" action="{$adminscript}?action=member&operation=save">
+		<table border="0" cellspacing="0" cellpadding="0" class="form-table">
+		  <tr>
+			<td width="90">{$lang.member.name}£º</td>
+			<td><input name="member[username]" id="username" type="text" class="textinput" style="width:240px;" onblur="checkValue(this.value,'operation=checkname','{$lang.user_exists}')" /></td>
+		  </tr>
+		  <tr>
+			<td>{$lang.member.password}£º</td>
+			<td><input name="member[password]" id="password" type="password" class="textinput" style="width:240px;" /></td>
+		  </tr>
+		  <tr>
+			<td>{$lang.member.email}£º</td>
+			<td><input name="member[email]" id="email" type="text" class="textinput" style="width:240px;" /></td>
+		  </tr>
+		  <tr>
+			<td>{$lang.member.tel}£º</td>
+			<td><input name="member[tel]" type="text" class="textinput" style="width:240px;"></td>
+		  </tr>
+		  <tr>
+			<td>{$lang.member.company}£º</td>
+			<td><input name="member[company]" type="text"  class="textinput" style="width:240px;"></td>
+		  </tr>
+		 </table>
+	  </form>
+	<div class="toolbar">
+		<span class="btn btn-dft" onclick="SaveMember()" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseover="this.className='btn btn-hover'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{if $operation=='addnew'}{$lang.save}{else}{$lang.save_edit}{/if}</span></span>
+		<span class="btn btn-dft" onclick="LoadPage()" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseover="this.className='btn btn-hover'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.back_list}</span></span>
+		<span class="btn btn-dft" onclick="window.location.reload();" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseover="this.className='btn btn-hover'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.refresh}</span></span>
+	</div>
+</div>
+<script type="text/javascript">
+var membertext = new Array();
+membertext[0] = '{$lang.membertxt.0}';
+membertext[1] = '{$lang.membertxt.1}';
+membertext[2] = '{$lang.membertxt.2}';
+{literal}function SaveMember(){
+	var theForm = document.newmember;
+   	if(!$("#username").val()){
+	  	showError(membertext[0])
+	  	return false;
+   	}
+   	if(!$("#password").val()){
+	  	showError(membertext[1]);
+	  	return false;
+   	}
+   	if(!$("#email").val()){
+	  	showError(membertext[2]);
+	  	return false;
+   	}
+   	theForm.submit();
+  	return true;
+}{/literal}
+</script>
+<!--{elseif $operation=='edit'}-->
+<div class="main-div">
+	<div class="pos-div">
+		<h2>{$lang.cp_home} &raquo; {$lang.member.manage} &raquo; {$lang.member.edit}</h2>
+	</div>
+	<div class="toolbar">
+		<span class="btn btn-dft" onclick="return SaveMember()" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseover="this.className='btn btn-hover'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{if $operation=='addnew'}{$lang.save}{else}{$lang.save_edit}{/if}</span></span>
+		<span class="btn btn-dft" onclick="LoadPage()" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseover="this.className='btn btn-hover'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.back_list}</span></span>
+		<span class="btn btn-dft" onclick="window.location.reload();" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseover="this.className='btn btn-hover'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.refresh}</span></span>
+	</div>
+	  <form name="newmember" method="post" action="{$adminscript}?action=member&operation=modify">
+		<input type="hidden" name="uid" value="{$member.uid}" />
+		<table border="0" cellspacing="0" cellpadding="0" class="form-table">
+		  <tr>
+			<td width="90">{$lang.member.name}£º</td>
+			<td>{$member.username}</td>
+		  </tr>
+		  <tr>
+			<td>{$lang.member.newpass}£º</td>
+			<td><input name="member[password]" id="password" type="password" class="textinput" style="width:240px;" /></td>
+		  </tr>
+		  <tr>
+			<td>{$lang.member.email}£º</td>
+			<td><input name="member[email]" id="email" type="text" class="textinput" style="width:240px;" value="{$member.email}" /></td>
+		  </tr>
+		  <tr>
+			<td>{$lang.member.tel}£º</td>
+			<td><input name="member[tel]" type="text" value="{$member.tel}" class="textinput" style="width:240px;"></td>
+		  </tr>
+		  <tr>
+			<td>{$lang.member.company}£º</td>
+			<td><input name="member[company]" type="text" value="{$member.company}" class="textinput" style="width:240px;"></td>
+		  </tr>
+		 </table>
+	  </form>
+	<div class="toolbar">
+		<span class="btn btn-dft" onclick="return SaveMember()" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseover="this.className='btn btn-hover'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{if $operation=='addnew'}{$lang.save}{else}{$lang.save_edit}{/if}</span></span>
+		<span class="btn btn-dft" onclick="LoadPage()" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseover="this.className='btn btn-hover'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.back_list}</span></span>
+		<span class="btn btn-dft" onclick="window.location.reload();" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseover="this.className='btn btn-hover'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.refresh}</span></span>
+	</div>
+</div>
+<script type="text/javascript">
+var membertxt = '{$lang.membertxt.2}';
+{literal}function SaveMember(){
+	var theForm = document.newmember;
+   	if(!$("#email").val()){
+	  	showError(membertxt);
+	  	return false;
+   	}
+   	theForm.submit();
+  	return true;
+}{/literal}
+</script>
+<!--{else}-->
+<div class="main-div">
+<div class="pos-div">
+	<h2>{$lang.cp_home} &raquo; {$lang.member.manage} &raquo; {$lang.member.list}¡¡{$lang.total}{$totalrecords}{$lang.total_records}</h2>
+	<div class="searchbox">
+	  <select name="groupid" id="groupid" onchange="ListTable('groupid='+this.value)">
+		  <option value="0">{$lang.group.all}</option>
+		  <!--{foreach from=$groups item=gg}-->			  
+		  <option value="{$gg.groupid}"{if $gg.current} selected="selected" {/if}>{$gg.groupname}</option>
+		  <!--{/foreach}-->
+	  </select>
+	  <input type="text" name="q" id="q" value="{$smarty.get.q}" class="textinput" style="width:145px;" />
+	  <span class="btn btn-dft" onclick="ListTable('groupid='+$('#groupid').val()+'&q='+$('#q').val())" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseover="this.className='btn btn-hover'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.search}</span></span>
+ 	</div>
+</div>
+<div class="toolbar">
+    <span class="pagebox">{$pagelink}</span>
+    <span class="btn btn-dft" onclick="Drop('uid[]','{$querystring}')" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span><b>{$lang.drop}</b></span></span>
+	<span class="btn btn-dft" onclick="LoadPage('operation=addnew')" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.member.addnew}</span></span>
+	<span class="btn btn-dft" onclick="LoadPage('{$querystring}')" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.refresh}</span></span>
+</div>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="list">
+    <tr>
+      <th width="20"><input type="checkbox" onclick="checkAll(this,'uid[]')" /></td>
+      <th>{$lang.member.name}</td>
+      <th width="80">{$lang.member.group}</td> 
+      <th width="160">{$lang.member.email}</td>
+	  <th width="50">{$lang.member.exp}</td>
+	  <th width="50">{$lang.member.credits}</td>
+	  <th width="110">{$lang.member.regdate}</td>
+      <th width="90">{$lang.member.lastip}</td>
+      <th width="50" class="tocenter">{$lang.member.logintimes}</td>
+	  <th width="120" class="last">{$lang.member.lastlogin}</td>
+    </tr>
+	<!--{foreach from=$members item=member}-->
+    <tr onmouseover="this.className='active'" onmouseout="this.className=''">
+      <td><input type="checkbox" name="uid[]" value="{$member.uid}" onclick="checkThis(this)" /></td>
+      <td><a href="{$adminscript}?action=member&operation=edit&uid={$member.uid}">{$member.username}</a></td>
+      <td>{$member.groupname}</td> 
+      <td>{$member.email}</td>
+	  <td>{$member.exp}</td>
+	  <td>{$member.credits}</td>
+	  <td>{$member.regdate|date_format:'%Y-%m-%d %H:%M'}</td>
+      <td>{$member.lastip}</td>
+      <td class="tocenter">{$member.logintimes}</span></td>
+	  <td><span class="mdate">{$member.lastlogin|date_format:'%Y-%m-%d %H:%M:%S'}</span></td>
+    </tr>
+	<!--{/foreach}-->
+	<tr>
+	    <td colspan="7">{$lang.select}£º
+			<a href="javascript:;" onclick="selectAll('uid[]')">{$lang.selectall}</a> - 
+			<a href="javascript:;" onclick="cancelAll('uid[]')">{$lang.noselect}</a> - 
+			<a href="javascript:;" onclick="reverseAll('uid[]')">{$lang.reverseselect}</a>
+		</td>
+	</tr>
+  </table>
+<div class="toolbar">
+    <span class="pagebox">{$pagelink}</span>
+    <span class="btn btn-dft" onclick="Drop('uid[]','{$querystring}')" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span><b>{$lang.drop}</b></span></span>
+	<span class="btn btn-dft" onclick="LoadPage('operation=addnew')" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.member.addnew}</span></span>
+	<span class="btn btn-dft" onclick="LoadPage('{$querystring}')" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.refresh}</span></span>
+</div>
+</div>
+<!--{/if}-->

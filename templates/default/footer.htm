@@ -1,0 +1,8 @@
+<div class="nav2">{foreach from=$navs.bot item=nav}<a href="{$nav.url}"{$nav.target}>{$nav.title}</a>　{/foreach}</div>
+<div id="footer">
+	主管单位: {$config.sitename} 技术支持：<a href="http://www.toking.cc" target="_blank">拓垦科技</a>  备案号 {$config.icp}<br />
+	地址：{$contactus.address} 联系电话：{foreach from=$contactus.tel item=tel}{$tel} {/foreach} 传真：{foreach from=$contactus.fax item=fax}{$fax} {/foreach}
+</div>
+<div class="blank"></div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+/* CSS Document */
+html,body{padding:0; margin:0; font-size:13px; color:#555;}
+ul,li,form,h1,h2,h3 {padding:0; margin:0; list-style:none;}
+a:link,a:active,a:visited {text-decoration:none; color:#333333;}
+a:hover {color:#CC0000; text-decoration:none;}
+.clear {height:1px; line-height:1px; clear:both;}
+.blank {height:8px; line-height:8px; clear:both;}
+.top {background:url(titBg.gif) repeat-x; height:30px; line-height:30px; padding:0 10px; width:960px; margin:0 auto; color:#fff;}
+.top #member {float:right; font-family:Arial; font-weight:bold;}
+.top #member a{color:#fff; text-decoration:none;}
+.top #member a:hover{text-decoration:underline;}
+.banner {width:980px; height:120px; margin:0 auto; clear:both; overflow:hidden;}
+.nav {background:url(titBg.gif) 0 0 repeat-x; height:30px; width:960px; padding:0 10px; margin:0 auto; color:#fff;}
+.nav #timer {width:170px; float:right; text-align:left; height:30px; font:bold 13px/30px Arial;}
+.nav ul {width:780px; float:left; height:30px; overflow:hidden;}
+.nav ul li {line-height:30px; width:75px; text-align:center; float:left; color:#fff;}
+.nav ul li a{color:#fff; text-decoration:none;}
+.nav ul li a:hover {text-decoration:underline;}
+.page-wrap {width:980px; clear:both; margin:0 auto;}
+.index-left {width:670px; float:left;}
+.index-left .titlediv {background:url(titBg.gif) 0 -141px repeat-x; height:24px; line-height:24px; clear:both;}
+.index-left .titlediv .title {background:url(allPic.gif) 0 -380px no-repeat; height:22px; padding-left:22px; font:bold 13px/22px Arial; color:#012475;}
+.index-left .titlediv .more {background:url(allPic.gif) 30px -423px no-repeat; height:24px; padding-right:22px; float:right;}
+.index-left #slide {width:320px; margin-top:10px; height:268px; float:left;}
+.index-left #focus-news {width:340px; height:278px; float:right; text-align:left;}
+.index-left #focus-news div {background:url(titBg.gif) 0 -221px repeat-x; height:33px; position:relative;}
+.index-left #focus-news div span {width:66px; padding-top:5px; height:20px; margin-top:5px; border-right:1px #ccc solid; text-align:center; display:inline-block; float:left;}
+.index-left #focus-news div span.selected {background:url(allPic.gif) 0 -470px no-repeat; height:30px; border:none;}
+.index-left #focus-news div span.selected a{color:#fff; text-decoration:none;}
+.index-left #focus-news ul{clear:both; padding:0; display:none;}
+.index-left #focus-news ul li {background:url(allPic.gif) 0 -571px no-repeat; text-align:left; padding-left:10px; height:24px; line-height:24px; overflow:hidden;}
+.index-left #focus-news ul li.first a{color:#FF0000; font-weight:bold;}
+.index-left .newsbox {width:330px; float:left;}
+.index-left .newsbox-r {float:right; text-align:left;}
+.index-left .newsbox ul{clear:both; padding:5px 0;}
+.index-left .newsbox ul li {background:url(allPic.gif) 0 -571px no-repeat; text-align:left; padding-left:10px; height:24px; line-height:24px; overflow:hidden;}
+.index-left .newsbox ul li.red a{color:#FF0000; font-weight:bold;}
+.index-left .newsbox p {margin:0; margin:5px 0; border-bottom:1px #ccc dotted; line-height:150%; font-size:12px; color:#666;}
+.index-left .newsbox p img {border:0; width:102px; height:84px; float:left; margin-right:20px;}
+.index-left .banner2 {margin:10px auto; clear:both;}
+.index-left dl {padding:0; margin:0; width:167px; float:left;}
+.index-left dl dd {text-align:center; margin:0; padding:0;}
+.index-left dl dd img {width:158px; height:104px; border:0;}
+.index-left dl dt {width:150px; clear:both; margin:0 auto; height:24px; line-height:24px; text-align:center; overflow:hidden; padding:0;}
+.index-right {width:300px; float:right;}
+.index-right .titlediv {background:url(titBg.gif) 0 -141px repeat-x; height:24px; line-height:24px; clear:both;}
+.index-right .titlediv .title {background:url(allPic.gif) 0 -38px no-repeat; padding-left:26px; font:bold 13px/24px Arial; color:#B32225;text-shadow:#fff 1px 0 0, #fff 0 1px 0, #fff -1px 0 0, #fff 0 -1px 0;
+*filter:Dropshadow(offx=1, offy=0, color=white)Dropshadow(offx=0, offy=1, color=white)Dropshadow(offx=0, offy=-1, color=white)Dropshadow(offx=-1, offy=0, color=white);}
+.index-right .titlediv .more {float:right; margin-right:10px;}
+.index-right .form-item {padding:10px; clear:both; text-align:left;}
+.index-right .form-item input.txt {border:1px #ccc solid; padding:2px 3px; height:16px; width:160px;}
+.index-right .form-item .button {background:url(allPic.gif) -79px -286px no-repeat; width:63px; height:23px; border:none; color:#fff;}
+.index-right .account {padding:5px 10px; clear:both; text-align:left;}
+.index-right ul{clear:both; padding:5px 0;}
+.index-right ul li {background:url(allPic.gif) 0 -571px no-repeat; text-align:left; padding-left:10px; height:24px; line-height:24px; overflow:hidden;}
+.index-right .ads {clear:both; margin:10px 0; text-align:left;}
+.linktitle {clear:both; padding:5px 10px; font-weight:bold; margin-top:10px; background:#E7E9F6;}
+.links {clear:both; padding:10px 7px; line-height:150%;}
+.links a{margin:0 3px;}
+.lingdao {background:#f2f2f2; padding:10px;}
+.lingdao .avatar {width:280px; border:0;}
+.lingdao p {padding:5px 0; margin:0;}
+.lingdao ul {padding:5px 0; clear:both;}
+.lingdao ul li {width:80px; float:left; height:24px; line-height:24px; overflow:hidden;}
+.yourpos {height:30px; line-height:30px; clear:both;}
+.bodyLeft {width:660px; float:left;}
+.bodyLeft .article-title {padding:15px 0; text-align:center; font-size:20px; color:#cc0000; clear:both; margin:0; border-bottom:1px #ccc solid;}
+.bodyLeft .article-info {color:#cc0000; text-align:center; height:28px; line-height:28px;}
+.bodyLeft .article-body {text-align:justify; padding:10px 0; line-height:150%; font-size:14px;}
+.bodyLeft .article-comment {clear:both; border:1px #ccc solid; margin:7px 0;}
+.bodyLeft .article-comment div {height:28px; line-height:28px; font-family:Arial; border-bottom:1px #ccc solid; border-top:1px #ccc solid; padding:0 10px; background:#f2f2f2;}
+.bodyLeft .article-comment div span{float:right;}
+.bodyLeft .article-comment p {padding:6px 10px; text-align:justify; line-height:150%;}
+.bodyLeft .article-comment .pagediv {text-align:right; clear:both; border-bottom:none;}
+.bodyLeft .article-comment .pagediv a{margin:0 3px;}
+.bodyLeft .titlediv {background:#EFEFEF; height:28px; line-height:28px; padding:0 5px; clear:both; border-bottom:1px #ccc solid; border-top:1px #ccc solid; font-size:14px;}
+.bodyLeft .list{padding:10px 0; clear:both;}
+.bodyLeft .list li{text-align:left; height:24px; line-height:24px; overflow:hidden; font-size:14px;}
+.bodyLeft .article-wrap {margin:10px 0; clear:both; border-top:1px #ccc solid; border-bottom:1px #ccc solid;}
+.bodyLeft .article-wrap ul {padding:10px 0; clear:both;}
+.bodyLeft .article-wrap ul li {background:url(allPic.gif) 0 -571px no-repeat; text-align:left; font-size:14px; padding-left:10px; height:28px; line-height:28px; overflow:hidden;}
+.bodyLeft .article-wrap ul li span{float:right; font-family:Arial;}
+.bodyLeft .form {clear:both; border:1px #ccc solid; margin-top:10px; padding:10px;}
+.bodyLeft .form input.txt {height:16px; padding:2px 3px; border:1px #ccc solid; width:80px;}
+.bodyLeft .form .button {border:1px #ccc solid; height:22px; padding:0 10px; background:#dedede;}
+.bodyLeft .form textarea {width:632px; height:180px; border:1px #ccc solid; margin:10px 0; padding:3px;}
+.bodyRight {width:300px; float:right; text-align:left;}
+.bodyRight .titlediv {background:url(titBg.gif) 0 -141px repeat-x; height:24px; line-height:24px; clear:both;}
+.bodyRight .titlediv .title{background:url(allPic.gif) 0 -380px no-repeat; height:22px; padding-left:22px; font:bold 13px/22px Arial; color:#012475;}
+.bodyRight .titlediv .more {float:right; margin-right:10px;}
+.bodyRight ul{clear:both; padding:5px 0;}
+.bodyRight ul li {background:url(allPic.gif) 0 -571px no-repeat; text-align:left; padding-left:10px; height:24px; line-height:24px; overflow:hidden;} 
+.bodyRight ul li a:hover {text-decoration:underline;}
+.bodyRight .ads {clear:both; margin:10px 0; text-align:left;}
+#login-form {border:1px #ccc solid; background:#e2e2e2; padding:10px 20px;}
+#login-form h1,#reg-wrap h1 {padding:5px 0 ; text-align:left; font-size:22px;}
+#login-form .item {padding:7px 0; font:bold 12px/24px Arial; text-align:left;}
+#login-form .item .input {height:20px; padding:2px 3px; width:160px; border:1px #ccc solid;}
+#login-form .item .submit {padding:5px 10px; background:#f2f2f2; border-left:1px #ccc solid; border-top:1px #ccc solid; border-bottom:1px #666 solid; border-right:1px #666 solid; font-weight:bold;}
+#reg-wrap {clear:both; padding:10px;border:1px #ccc solid; background:#e2e2e2;}
+#reg-wrap .item {padding:7px 0; font:400 13px/24px Arial; text-align:left;}
+#reg-wrap .item strong {width:90px; display:inline-block;}
+#reg-wrap .input {height:20px; padding:2px 3px; width:200px; border:1px #999 solid;}
+#reg-wrap .button {background:#fff; height:30px; padding:0 20px; font-weight:bold; border:1px #666 solid;}
+#job-wrap {clear:both; border-bottom:1px #ccc solid; border-top:1px #ccc solid; padding:10px 0;}
+#job-wrap .box {margin:10px 0; border-bottom:1px #ccc dotted; background:#fefefe;}
+#job-wrap .box h3{padding:10px 5px; text-align:left; font-size:14px; background:#f2f2f2;}
+#job-wrap .box div {height:28px; line-height:28px; text-align:left; padding:0 5px;}
+#job-wrap .box p {padding:5px; line-height:150%; margin:0;}
+#job-wrap .postresume {padding:5px; text-align:right; font-weight:bold;}
+.nav2 {background:url(titBg.gif) repeat-x; height:30px; line-height:30px; color:#fff; text-align:center; width:980px; margin:8px auto;}
+.nav2 a{color:#fff; text-decoration:none;}
+.nav2 a:hover {color:#fff; text-decoration:underline;}
+.page {margin:10px 0; text-align:right; font-size:12px;}
+.page a,.page span{display:inline-block; height:20px; line-height:20px; padding:0 5px; border:1px #ddd solid; color:#555; text-decoration:none; margin:0 2px; background:#fff;}
+.page a:hover,#account-wrap .tools a:hover {border-color:#999; color:#333;}
+.page span.cur {background:#ccc;}
+.messagebox {padding:20px; width:60%; margin:60px auto; clear:both; border:1px #CCCCCC solid; background:#F5F5F5;}
+.messagebox h3.ok{background:url(information.gif) left center no-repeat; font-size:14px; padding:6px 0 0 36px; line-height:26px;}
+.messagebox h3.error{background:url(warning.gif) left center no-repeat; font-size:14px; padding:6px 0 0 36px; line-height:26px;}
+.messagebox h3.confirm{background:url(confirm.gif) left center no-repeat; font-size:14px; padding:6px 0 0 36px; line-height:26px;}
+.messagediv {clear:both; padding:5px 10px;}
+.messagediv a{margin-right:5px;}
+#footer {text-align:center; width:980px; color:#666; line-height:22px; margin:0 auto;}

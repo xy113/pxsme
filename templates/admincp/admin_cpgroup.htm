@@ -1,0 +1,128 @@
+<!--{if $operation=='addnew' || $operation=='edit'}-->
+<div class="main-div">
+	<div class="pos-div">
+		<h2>{$lang.cp_home} &raquo; {$lang.cpgroup.manage} &raquo; {if $operation=='addnew'}{$lang.cpgroup.addnew}{else}{$lang.cpgroup.edit}{/if}</h2>
+	</div>
+	<div class="toolbar">
+		<span class="btn btn-dft" onclick="SaveGroup()" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.save}</span></span>
+		<span class="btn btn-dft" onclick="LoadPage()" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.back_list}</span></span>
+		<span class="btn btn-dft" onclick="window.location.reload()" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.refresh}</span></span>
+		<span class="ctrlenter">　{$lang.ctrlenter}</span>
+	</div>
+	<form name="cpgroup" method="post" action="{$adminscript}?action=cpgroup&operation=save">
+	<input type="hidden" name="cpgroupid" value="{$cpgroup.cpgroupid}">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="form-table">
+      <tr>
+        <td width="70"><strong>{$lang.cpgroup.name}：</strong></td>
+        <td><input type="text" class="textinput" style="width:200px;" name="cpgroupname" value="{$cpgroup.cpgroupname}" /></td>
+      </tr>
+	  <tr>
+        <td width="70"><strong>{$lang.cpgroup.description}：</strong></td>
+        <td><textarea style="width:200px; height:60px;" name="cpgrouptext"></textarea></td>
+      </tr>
+    </table>
+	<div style="padding:10px 5px;"><strong>{$lang.cpgroup.priv_system}</strong></div>
+	  <table width="100%" border="0" cellpadding="0" cellspacing="0" class="form-table">
+        <tr>
+          <td width="100"><input name="perm[]" type="checkbox" value="allowadminsettings"{if $cpgroup.priv.allowadminsettings} checked="checked"{/if} />  系统设置</td>
+          <td width="100"><input name="perm[]" type="checkbox" value="allowadminnav"{if $cpgroup.priv.allowadminnav} checked="checked"{/if} /> 导航设置</td>
+          <td width="100"><input name="perm[]" type="checkbox" value="allowadmincontact"{if $cpgroup.priv.allowadmincontact} checked="checked"{/if} /> 联系信息</td>
+          <td width="100"><input name="perm[]" type="checkbox" value="allowadminannounce"{if $cpgroup.priv.allowadminannounce} checked="checked"{/if} /> 系统公告</td>
+          <td><input name="perm[]" type="checkbox" value="allowadminlog"{if $cpgroup.priv.allowadminlog} checked="checked"{/if} /> 管理日志</td>
+        </tr>
+        <tr>
+          <td><input name="perm[]" type="checkbox" value="allowadminadmins"{if $cpgroup.priv.allowadminadmins} checked="checked"{/if} />管理员管理</td>
+          <td><input name="perm[]" type="checkbox" value="allowadminmember"{if $cpgroup.priv.allowadminmember} checked="checked"{/if} />会员管理</td>
+          <td><input name="perm[]" type="checkbox" value="allowadmintemplate"{if $cpgroup.priv.allowadmintemplate} checked="checked"{/if} />模板管理</td>
+          <td><input name="perm[]" type="checkbox" value="allowadmindb"{if $cpgroup.priv.allowadmindb} checked="checked"{/if} />数据管理</td>
+          <td><input name="perm[]" type="checkbox" value="allowadminemail"{if $cpgroup.priv.allowadminemail} checked="checked"{/if} />邮件管理</td>
+        </tr>
+		<tr>
+          <td><input name="perm[]" type="checkbox" value="allowadminabout"{if $cpgroup.priv.allowadminabout} checked="checked"{/if} />单页文章</td>
+          <td><input name="perm[]" type="checkbox" value="allowadminslide"{if $cpgroup.priv.allowadminslide} checked="checked"{/if} />幻灯片</td>
+          <td><input name="perm[]" type="checkbox" value="allowadminflink"{if $cpgroup.priv.allowadminflink} checked="checked"{/if} />友情链接</td>
+          <td><input name="perm[]" type="checkbox" value="allowadminpoll"{if $cpgroup.priv.allowadminpoll} checked="checked"{/if} />在线投票</td>
+          <td><input name="perm[]" type="checkbox" value="allowadminfaq"{if $cpgroup.priv.allowadminfaq} checked="checked"{/if} />常见问题</td>
+        </tr>
+      </table>
+	  <div style="padding:10px 5px;"><strong>{$lang.cpgroup.priv_content}</strong></div>
+	  <table width="100%" border="0" cellpadding="0" cellspacing="0" class="form-table">
+        <tr>
+          <td width="100"><input name="perm[]" type="checkbox" value="allowadminarticle"{if $cpgroup.priv.allowadminarticle} checked="checked"{/if} />  文章管理</td>
+          <td width="100"><input name="perm[]" type="checkbox" value="allowadminimage"{if $cpgroup.priv.allowadminimage} checked="checked"{/if} /> 图组管理</td>
+          <td width="100"><input name="perm[]" type="checkbox" value="allowadminvideo"{if $cpgroup.priv.allowadminvideo} checked="checked"{/if} /> 视频管理</td>
+          <td width="100"><input name="perm[]" type="checkbox" value="allowadmingoods"{if $cpgroup.priv.allowadmingoods} checked="checked"{/if} /> 产品管理</td>
+          <td><input name="perm[]" type="checkbox" value="allowadminjob"{if $cpgroup.priv.allowadminjob} checked="checked"{/if} /> 招聘管理</td>
+        </tr>
+        <tr>
+          <td><input name="perm[]" type="checkbox" value="allowadminqa"{if $cpgroup.priv.allowadminqa} checked="checked"{/if} /> 问答管理</td>
+          <td><input name="perm[]" type="checkbox" value="allowadminfeedback"{if $cpgroup.priv.allowadminfeedback} checked="checked"{/if} />用户反馈</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+  </form>
+	<div class="toolbar">
+		<span class="btn btn-dft" onclick="SaveGroup()" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.save}</span></span>
+		<span class="btn btn-dft" onclick="LoadPage()" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.back_list}</span></span>
+		<span class="btn btn-dft" onclick="window.location.reload()" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.refresh}</span></span>
+		<span class="ctrlenter">　{$lang.ctrlenter}</span>
+	</div>
+</div>
+{literal}
+<script type="text/javascript">
+var hassubmited = false;
+function SaveGroup(){
+	if(hassubmited) return false;
+	var theForm = document.cpgroup;
+	if(!theForm.cpgroupname.value){
+		showError(admin_cpgroupname_empty);
+		return false;
+	}
+	theForm.submit();
+}
+document.onkeydown = function(e){
+	e=window.event||e;
+	if(e.ctrlKey&&e.keyCode==13){
+	   SaveGroup();
+	}
+}
+</script>
+{/literal}
+<!--{else}-->
+<div class="main-div">
+	<div class="pos-div">
+		<h2>{$lang.cp_home} &raquo; {$lang.cpgroup.manage} &raquo; {$lang.cpgroup.list}</h2>
+	</div>
+	<div class="toolbar">
+		<span class="btn btn-dft" onclick="Drop('cpgroupid[]')" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span><b>{$lang.drop}</b></span></span>
+		<span class="btn btn-dft" onclick="LoadPage('operation=addnew')" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.cpgroup.addnew}</span></span>
+		<span class="btn btn-dft" onclick="window.location.reload()" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.refresh}</span></span>
+	</div>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="list">
+    <tr>
+      <th scope="col" width="20"><input type="checkbox" onClick="checkAll(this,'cpgroupid[]')"></th>
+      <th scope="col" width="100">{$lang.cpgroup.name}</th>
+	  <th scope="col" class="last">{$lang.cpgroup.description}</th>
+    </tr>
+	<!--{foreach from=$groups item=group}-->
+    <tr onmouseover="this.className='active'" onmouseout="this.className=''">
+      <td><input type="checkbox" name="cpgroupid[]" value="{$group.cpgroupid}" onClick="checkThis(this)"></td>
+      <td><a href="{$adminscript}?action=cpgroup&operation=edit&cpgroupid={$group.cpgroupid}">{$group.cpgroupname}</a></td>
+	  <td>{$group.cpgrouptext}</td>
+    </tr>
+	<!--{/foreach}-->
+	<tr><td colspan="3">{$lang.select}:
+		<a href="javascript:;" onclick="selectAll('cpgroupid[]')">{$lang.selectall}</a> - 
+		<a href="javascript:;" onclick="cancelAll('cpgroupid[]')">{$lang.noselect}</a> - 
+		<a href="javascript:;" onclick="reverseAll('cpgroupid[]')">{$lang.reverseselect}</a>
+	</td></tr>
+  </table>
+	<div class="toolbar">
+		<span class="btn btn-dft" onclick="Drop('cpgroupid[]')" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span><b>{$lang.drop}</b></span></span>
+		<span class="btn btn-dft" onclick="LoadPage('operation=addnew')" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.cpgroup.addnew}</span></span>
+		<span class="btn btn-dft" onclick="window.location.reload()" onmouseover="this.className='btn btn-hover'" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.refresh}</span></span>
+	</div>
+</div>
+<!--{/if}-->

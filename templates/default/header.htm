@@ -1,0 +1,21 @@
+<div class="top">
+<span id="member">
+{if $logined}
+欢迎您：{$my.username}　<a href="member.php">个人中心</a> <a href="member.php?action=login&do=logout">注销</a>
+{else}
+<a href="member.php?action=login">登录</a> <a href="member.php?action=register">注册</a>
+{/if}</span>
+欢迎访问盘县中小企业联合会官方网站。
+</div>
+<div class="banner"><img src="images/banner.jpg" border="0" /></div>
+<div class="nav">
+	<ul>
+		<li><a href="./">网站首页</a></li>
+		{foreach from=$navs.mid item=nav}
+		<li><a href="{$nav.url}">{$nav.title}</a></li>
+		{/foreach}
+	</ul>
+	<div id="timer"></div>
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">setInterval("$$('timer').innerHTML=new Date().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay());",1000);</script>

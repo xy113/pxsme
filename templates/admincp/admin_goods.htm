@@ -1,0 +1,168 @@
+<!--{if $operation=='addnew'|| $operation=='edit'}-->
+{include file='libs/newgoods.htm'}
+<!--{else}-->
+<div class="main-div">
+    <div class="pos-div">
+	     <h2>{$lang.cp_home} &raquo; {$lang.goods.manage} &raquo; {$lang.goods.list}{if $cid>0} &raquo; {$category.name}{/if}　{$lang.total}{$totalrecords}{$lang.total_records}</h2>
+		 <div class="searchbox">
+		 	<select name="cid" id="cid" onchange="ListTable('cid='+this.value)">
+				  <option value="0" class="big">{$lang.category.all}</option>
+				  <!--{foreach from=$categories.0 item=cc}-->
+				  <!--{assign var='sub' value=$cc.cid}-->			  
+				  <option value="{$cc.cid}" class="big"{if $cc.current} selected="selected" {/if}>{$cc.name}</option>
+				  <!--{foreach from=$categories.$sub item=ccc}-->
+				  <option value="{$ccc.cid}" {if $ccc.current} selected="selected" {/if}>　|-{$ccc.name}</option>
+				  <!--{/foreach}-->
+				  <!--{/foreach}-->
+			  </select>
+		      <input type="text" name="q" id="q" value="{$filter.key}" class="textinput" style="width:145px;" />
+			  <span class="btn btn-dft" onclick="ListTable('&q='+$('#q').val())" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseover="this.className='btn btn-hover'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.search}</span></span>
+		 </div>
+	</div>
+	<div class="toolbar">
+		<span class="pagebox">{$pagelink}</span>
+		<span class="btn btn-dft" onclick="Drop('id[]','{$querystring}')" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseover="this.className='btn btn-hover'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span><b>{$lang.drop}</b></span></span>
+		<span class="btn btn-dft" onclick="LoadPage('operation=addnew&cid={$cid}')" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseover="this.className='btn btn-hover'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.goods.addnew}</span></span>
+		<span id="btnbox">
+		   <span class="btnL" onclick="ShowSubMenu(this);" onmouseup="this.className='btnL-hover'" onmousedown="this.className='btnL-active'" onmouseout="this.className='btnL'" onmouseover="this.className='btnL-hover'" tabindex="0">{$lang.markas}
+			<ul class="submenu" onmouseover="ShowMenu(this)" onmouseout="HideMenu(this)">
+			     <li><a href="javascript:;" onclick="toggleTable('id[]','operation=audited&{$querystring}&value=1')">{$lang.audited}</a></li>
+				 <li><a href="javascript:;" onclick="toggleTable('id[]','operation=audited&{$querystring}&value=0')">{$lang.unaudited}</a></li>
+				 <li><a href="javascript:;" onclick="toggleTable('id[]','operation=recommend&{$querystring}&value=1')">{$lang.goods.recommend}</a></li>
+				 <li><a href="javascript:;" onclick="toggleTable('id[]','operation=recommend&{$querystring}&value=0')">{$lang.unrecommend}</a></li>
+			</ul>
+	    </span><b class="arr"></b>
+		   <span class="btnM" onclick="ShowSubMenu(this)" onmouseup="this.className='btnM-hover'" onmousedown="this.className='btnM-active'" onmouseout="this.className='btnM'" onmouseover="this.className='btnM-hover'" tabindex="0">{$lang.moveto}
+			<ul class="submenu" onmouseover="ShowMenu(this)" onmouseout="HideMenu(this)">
+				 <!--{foreach from=$categories.0 item=cc}-->
+				 <li><a href="javascript:;" onclick="toggleTable('id[]','operation=move&cid={$cc.cid}')"><b>{$cc.name}</b></a></li>
+				 <!--{assign var='sub' value=$cc.cid}-->
+				 <!--{foreach from=$categories.$sub item=ccc}-->
+				 <li><a href="javascript:;" onclick="toggleTable('id[]','operation=move&cid={$ccc.cid}')">　|-{$ccc.name}</a></li>
+				 <!--{/foreach}-->
+				 <!--{/foreach}-->
+			</ul>
+		   </span><b class="arr"></b>
+		   <span class="btnM" onclick="ShowSubMenu(this)" onmouseup="this.className='btnM-hover'" onmousedown="this.className='btnM-active'" onmouseout="this.className='btnM'" onmouseover="this.className='btnM-hover'" tabindex="0">{$lang.view}
+			<ul class="submenu" onmouseover="ShowMenu(this)" onmouseout="HideMenu(this)">
+				 <li onmouseover="ShowSubMenu(this)" onmouseout="HideSubMenu(this)"><a href="javascript:;">{$lang.goods.category}<b class="arr2"></b></a>
+				     <ul>
+						 <!--{foreach from=$categories.0 item=cc}-->
+						 <li><a href="javascript:;" onclick="ListTable('cid={$cc.cid}')"><b>{$cc.name}</b></a></li>
+						 <!--{assign var='sub' value=$cc.cid}-->
+						 <!--{foreach from=$categories.$sub item=ccc}-->
+						 <li><a href="javascript:;" onclick="ListTable('cid={$ccc.cid}')">　|-{$ccc.name}</a></li>
+						 <!--{/foreach}-->
+						 <!--{/foreach}-->
+					 </ul>
+				 </li>
+				 <li><a href="javascript:;" onclick="ListTable('audited=0')">{$lang.unaudited}</a></li>
+				 <li><a href="javascript:;" onclick="ListTable()">{$lang.goods.all}</a></li>
+				 <li><a href="javascript:;" onclick="ListTable('recommend=1')">{$lang.goods.recommend}</a></li>
+			</ul>
+		   </span><b class="arr"></b>
+		   	<span class="btnR" onclick="ShowSubMenu(this)" onmouseover="this.className='btnR-hover'" onmouseup="this.className='btnR-hover'" onmousedown="this.className='btnR-active'" onmouseout="this.className='btnR'" tabindex="0">
+		     <span>{$lang.more}
+			    <ul class="submenu" onmouseover="ShowMenu(this)" onmouseout="HideMenu(this)">
+				    <li><a href="javascript:;" onclick="ListTable('{$querystring}&sort=ASC')">{$lang.ascorder}<b class="arr-asc"></b></a></li>
+					<li><a href="javascript:;" onclick="ListTable('{$querystring}&sort=DESC')">{$lang.descorder}<b class="arr-desc"></b></a></li>
+				</ul>
+			 </span><b class="arr"></b>
+	       </span>
+	  </span>
+		<span class="btn btn-dft" onclick="LoadPage('{$querystring}')" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseover="this.className='btn btn-hover'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.refresh}</span></span>
+  </div>
+  <form name="goods" method="post">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="list">
+      <tr>
+        <th width="20"><input type="checkbox" onclick="checkAll(this,'id[]')" /></th>
+		<th width="15" class="tocenter"><img src="images/icon_view.gif" title="{$lang.view}" border="0" width="16" height="16" /></th>
+        <th style="cursor:pointer;" title="{$lang.click_resort}" onclick="ListTable('{$querystring}&do=sort&orderby=id')">{$lang.goods.name}</th>
+        <th width="80">{$lang.goods.ldate}</th>
+		<th width="60" style="cursor:pointer;" title="{$lang.click_resort}" onclick="ListTable('{$querystring}&do=sort&orderby=price')">{$lang.goods.price}</th>
+        <th width="100">{$lang.goods.size}</th>	
+		<th width="30" class="tocenter">{$lang.audited}</th>
+        <th width="30" class="tocenter">{$lang.recommend}</th>
+		<th width="30" style="text-align:center; cursor:pointer;" title="{$lang.click_resort}" onclick="ListTable('{$querystring}&do=sort&orderby=views')">{$lang.clicks}</th>
+		<th width="140" class="last" style="cursor:pointer;" title="{$lang.click_resort}" onclick="ListTable('{$querystring}&do=sort&orderby=time')">{$lang.dateline}</th>
+      </tr>
+	  <!--{foreach from=$goods item=good}-->
+      <tr onmouseover="this.className='active'" onmouseout="this.className=''">
+        <td><input name="id[]" type="checkbox" value="{$good.id}" onclick="checkThis(this,'id[]')" /></td>
+		<td style="text-align:center;"><a href="{$good.goourl}" target="_blank"><img src="images/icon_view.gif" title="{$lang.view}" border="0" width="16" height="16" /></a></td>
+        <td><a href="{$adminscript}?action=goods&operation=edit&id={$good.id}">{$good.title}</a></td>
+		<td>{$good.listingdate}</td>
+        <td><span onclick="javascript:Edit(this,'operation=editprice&id={$good.id}')">{$good.price}</span></td>
+        <td><span onclick="javascript:Edit(this,'operation=editsize&id={$good.id}')">{$good.size}</span></td>
+		<td class="tocenter"><img src="images/{if $good.audited==1}yes.gif{else}no.gif{/if}" title="{$lang.click_switch}" onclick="toggle(this,'operation=toggle_audited&id={$good.id}')" /></td>
+        <td class="tocenter"><img src="images/{if $good.recommend==1}yes.gif{else}no.gif{/if}" title="{$lang.click_switch}" onclick="toggle(this,'operation=toggle_recommend&id={$good.id}')" /></td>
+		<td class="tocenter">{$good.views}</td>
+		<td><span class="mdate">{$good.dateline|date_format:'%Y-%m-%d %H:%M:%S'}</span></td>
+      </tr>
+	  <!--{/foreach}-->
+		<tr>
+			<td colspan="10">{$lang.select}��
+			<a href="javascript:;" onclick="selectAll('id[]')">{$lang.selectall}</a> - 
+			<a href="javascript:;" onclick="cancelAll('id[]')">{$lang.noselect}</a> - 
+			<a href="javascript:;" onclick="reverseAll('id[]')">{$lang.reverseselect}</a> - 
+			<a href="javascript:;" onclick="ListTable('recommend=1')">{$lang.recommend}</a> - 
+			<a href="javascript:;" onclick="ListTable('audited=0')">{$lang.unaudited}</a>
+			</td>
+		</tr>
+    </table>
+  </form>
+	<div class="toolbar">
+		<span class="pagebox">{$pagelink}</span>
+		<span class="btn btn-dft" onclick="Drop('id[]','{$querystring}')" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseover="this.className='btn btn-hover'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span><b>{$lang.drop}</b></span></span>
+		<span class="btn btn-dft" onclick="LoadPage('operation=addnew&cid={$cid}')" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseover="this.className='btn btn-hover'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.goods.addnew}</span></span>
+		<span id="btnbox">
+		   <span class="btnL" onclick="ShowSubMenu(this);" onmouseup="this.className='btnL-hover'" onmousedown="this.className='btnL-active'" onmouseout="this.className='btnL'" onmouseover="this.className='btnL-hover'" tabindex="0">{$lang.markas}
+			<ul class="submenu-bottom" onmouseover="ShowMenu(this)" onmouseout="HideMenu(this)">
+			     <li><a href="javascript:;" onclick="toggleTable('id[]','operation=audited&{$querystring}&value=1')">{$lang.audited}</a></li>
+				 <li><a href="javascript:;" onclick="toggleTable('id[]','operation=audited&{$querystring}&value=0')">{$lang.unaudited}</a></li>
+				 <li><a href="javascript:;" onclick="toggleTable('id[]','operation=recommend&{$querystring}&value=1')">{$lang.goods.recommend}</a></li>
+				 <li><a href="javascript:;" onclick="toggleTable('id[]','operation=recommend&{$querystring}&value=0')">{$lang.unrecommend}</a></li>
+			</ul>
+	    </span><b class="arr"></b>
+		   <span class="btnM" onclick="ShowSubMenu(this)" onmouseup="this.className='btnM-hover'" onmousedown="this.className='btnM-active'" onmouseout="this.className='btnM'" onmouseover="this.className='btnM-hover'" tabindex="0">{$lang.moveto}
+			<ul class="submenu-bottom" onmouseover="ShowMenu(this)" onmouseout="HideMenu(this)">
+				 <!--{foreach from=$categories.0 item=cc}-->
+				 <li><a href="javascript:;" onclick="toggleTable('id[]','operation=move&cid={$cc.cid}')"><b>{$cc.name}</b></a></li>
+				 <!--{assign var='sub' value=$cc.cid}-->
+				 <!--{foreach from=$categories.$sub item=ccc}-->
+				 <li><a href="javascript:;" onclick="toggleTable('id[]','operation=move&cid={$ccc.cid}')">　|-{$ccc.name}</a></li>
+				 <!--{/foreach}-->
+				 <!--{/foreach}-->
+			</ul>
+		   </span><b class="arr"></b>
+		   <span class="btnM" onclick="ShowSubMenu(this)" onmouseup="this.className='btnM-hover'" onmousedown="this.className='btnM-active'" onmouseout="this.className='btnM'" onmouseover="this.className='btnM-hover'" tabindex="0">{$lang.view}
+			<ul class="submenu-bottom" onmouseover="ShowMenu(this)" onmouseout="HideMenu(this)">
+				 <li><a href="javascript:;" onclick="ListTable('audited=0')">{$lang.unaudited}</a></li>
+				 <li><a href="javascript:;" onclick="ListTable()">{$lang.goods.all}</a></li>
+				 <li><a href="javascript:;" onclick="ListTable('recommend=1')">{$lang.goods.recommend}</a></li>
+				 <li onmouseover="ShowSubMenu(this)" onmouseout="HideSubMenu(this)"><a href="javascript:;">{$lang.goods.category}<b class="arr2"></b></a>
+				     <ul>
+						 <!--{foreach from=$categories.0 item=cc}-->
+						 <li><a href="javascript:;" onclick="ListTable('cid={$cc.cid}')"><b>{$cc.name}</b></a></li>
+						 <!--{assign var='sub' value=$cc.cid}-->
+						 <!--{foreach from=$categories.$sub item=ccc}-->
+						 <li><a href="javascript:;" onclick="ListTable('cid={$ccc.cid}')">　|-{$ccc.name}</a></li>
+						 <!--{/foreach}-->
+						 <!--{/foreach}-->
+					 </ul>
+				 </li>
+			</ul>
+		   </span><b class="arr"></b>
+		   	<span class="btnR" onclick="ShowSubMenu(this)" onmouseover="this.className='btnR-hover'" onmouseup="this.className='btnR-hover'" onmousedown="this.className='btnR-active'" onmouseout="this.className='btnR'" tabindex="0">
+		     <span>{$lang.more}
+			    <ul class="submenu-bottom" onmouseover="ShowMenu(this)" onmouseout="HideMenu(this)">
+				    <li><a href="javascript:;" onclick="ListTable('{$querystring}&sort=ASC')">{$lang.ascorder}<b class="arr-asc"></b></a></li>
+					<li><a href="javascript:;" onclick="ListTable('{$querystring}&sort=DESC')">{$lang.descorder}<b class="arr-desc"></b></a></li>
+				</ul>
+			 </span><b class="arr"></b>
+	       </span>
+	  </span>
+		<span class="btn btn-dft" onclick="LoadPage('{$querystring}')" onmouseup="this.className='btn btn-hover'" onmousedown="this.className='btn btn-active'" onmouseover="this.className='btn btn-hover'" onmouseout="this.className='btn btn-dft'" tabindex="0"><span>{$lang.refresh}</span></span>
+  </div>
+</div>
+<!--{/if}-->
